@@ -1,30 +1,43 @@
-# app.py
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-accounts = {
-    "user1": {"balance": 1000},
-    "user2": {"balance": 2000},
+# A simple dictionary for user accounts (for demonstration purposes).
+# In a real-world application, you'd use a secure database.
+user_accounts = {
+    "user1": {"username": "user1", "password": "password1"},
+    "user2": {"username": "user2", "password": "password2"},
 }
+
+# Sample offers data
+offers = [
+    {
+        "title": "Special Savings Account",
+        "description": "Open a savings account with us and enjoy a high interest rate."
+    },
+    {
+        "title": "Credit Card Promotion",
+        "description": "Apply for our credit card and get a cashback on your first purchase."
+    },
+    {
+        "title": "Mortgage Offer",
+        "description": "Low-interest rates on mortgages for a limited time."
+    }
+]
 
 @app.route("/")
 def home():
-    return render_template("index.html", accounts=accounts)
+    return render_template("index.html", offers=offers)
 
-@app.route("/transfer", methods=["POST"])
-def transfer():
-    from_account = request.form.get("from_account")
-    to_account = request.form.get("to_account")
-    amount = float(request.form.get("amount"))
+@app.route("/login", methods=["POST"])
+def login():
+    username = request.form.get("username")
+    password = request.form.get("password")
 
-    if from_account in accounts and to_account in accounts and accounts[from_account]["balance"] >= amount:
-        accounts[from_account]["balance"] -= amount
-        accounts[to_account]["balance"] += amount
+    if username in user_accounts and user_accounts[username]["password"] == password:
+        return "Login successful. Welcome, " + username + "!"
     else:
-        return "Transfer failed. Please check the accounts and balance."
-
-    return redirect(url_for("home"))
+        return "Login failed. Please check your credentials."
 
 if __name__ == "__main__":
     app.run(debug=True)
