@@ -1,29 +1,125 @@
-# index.html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bank Application</title>
+    <title>MANU-FREE-BANK</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #0056b3;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .feature {
+            flex: 0 0 calc(33.33% - 20px);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .input-group {
+            margin: 10px 0;
+        }
+
+        .input-group label {
+            font-weight: bold;
+        }
+
+        .input-group input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-group button {
+            background-color: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Bank</h1>
-    <h2>Accounts</h2>
-    <ul>
-        {% for account, data in accounts.items() %}
-            <li>{{ account }} - Balance: ${{ data.balance }}</li>
-        {% endfor %}
-    </ul>
-    <h2>Transfer Money</h2>
-    <form method="post" action="/transfer">
-        <label for="from_account">From Account:</label>
-        <input type="text" id="from_account" name="from_account" required>
-        <br>
-        <label for="to_account">To Account:</label>
-        <input type="text" id="to_account" name="to_account" required>
-        <br>
-        <label for="amount">Amount:</label>
-        <input type="number" id="amount" name="amount" required>
-        <br>
-        <input type="submit" value="Transfer">
-    </form>
+    <header>
+        <div class="container">
+            <h1>MANU-FREE-BANK</h1>
+            <p>Your Trusted Banking Partner</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Our Features and Services</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>Online Banking</h3>
+                <p>Access your account online, 24/7.</p>
+            </div>
+            <div class="feature">
+                <h3>Mobile Banking</h3>
+                <p>Bank on the go with our mobile app.</p>
+            </div>
+            <div class="feature">
+                <h3>Security</h3>
+                <p>Your account security is our top priority.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Customer Login</h2>
+        <div class="login">
+            <form class="login-form" action="login.php" method="post">
+                <div class="input-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
